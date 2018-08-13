@@ -17,38 +17,36 @@
     color: #fff!important;
 }
 
+
+
 /* Jumbotron Styles
 -------------------------------------------------- */
 
+.block{
+   position: relative;
+    z-index: -1; 
+}
+
+.video-block{
+    height: 300px;
+    overflow: hidden;
+    position: absolute;
+    top:0;    
+}
+
+video{
+    height: auto;
+    margin-top: -285px;
+    width: 100%;
+    z-index: -1;
+}
+
 .jumbotron {
-  position: relative;
-  min-width:100%;
-  min-height:100px;
-
-  
-}
-.jumbotron #myVideo {
- 
-  z-index: 1;
-  top: 0;
-  min-width:100%;
-  min-height:100%;
-  opacity:0.9;
-}
-.jumbotron .vcontainer {
-  width: 100%;
-  padding-right: 100px;
-  padding-left: 100px;
-  margin-right: 30px;
-  margin-left: 10px;
-  z-index: 2;
-  position: relative;
-
- 
-}
-
-.jumbotron-container {
-  height: 100px;
+    /* padding: 2rem 1rem; */
+    padding: -22rem 0rem;
+    margin-bottom: -3rem;
+    background-color: white;
+    /* border-radius: .3rem; */
 }
 
 
@@ -72,6 +70,7 @@
   font-weight: 300;
   line-height: 1;
   letter-spacing: -.05rem;
+  color:#3D1600;
 }
 
 /* Contact Styles
@@ -83,6 +82,12 @@
     margin-right: auto;
     margin-left: auto;
   
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 20px;
 }
 /* Contact Form Style --- */
 
@@ -147,27 +152,18 @@ button:hover {
     }
 }
 
+
+#contact p {
+  color: black;
+}
+
 /* Carousel Instagram
 -------------------------------------------------- */
 
-.carousel-inner .carousel-item-right.active,
-.carousel-inner .carousel-item-next {
-  transform: translateX(33.33%);
-}
-
-.carousel-inner .carousel-item-left.active, 
-.carousel-inner .carousel-item-prev {
-  transform: translateX(-33.33%)
-}
-  
-.carousel-inner .carousel-item-right,
-.carousel-inner .carousel-item-left{ 
-  transform: translateX(0);
-}
 
 .container-insta {
   background-color: #5B3413;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
   padding-top: 20px;
 }
 
@@ -177,24 +173,90 @@ button:hover {
   object-fit: cover;
 }
 
-.carousel-inner > .item.next,
-.carousel-inner > .item.active.right {
-  left: 0;
-  -webkit-transform: translate3d(33%, 0, 0);
-  -ms-transform: translate3d(33%, 0, 0);
-  -o-transform: translate3d(33%, 0, 0);
-  transform: translate3d(33%, 0, 0);
+
+.container-insta h2 {
+  padding-bottom: 40px;
 }
 
+@media (min-width: 768px) {
 
-.carousel-inner > .item.prev,
-.carousel-inner > .item.active.left {
-  left: 0;
-  -webkit-transform: translate3d(-33%, 0, 0);
-  -ms-transform: translate3d(-33%, 0, 0);
-  -o-transform: translate3d(-33%, 0, 0);
-  transform: translate3d(-33%, 0, 0);
+    /* show 3 items */
+    .carousel-inner .active,
+    .carousel-inner .active + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  {
+        display: block;
+    }
+    
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
+        transition: none;
+    }
+    
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+      position: relative;
+      transform: translate3d(0, 0, 0);
+    }
+    
+    .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -25%;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    
+    /* left or forward direction */
+    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    
+    /* farthest right hidden item must be abso position for animations */
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    
+    /* right or prev direction */
+    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+
 }
+
+ /* Bootstrap Lightbox using Modal */
+
+#profile-grid { overflow: auto; white-space: normal; } 
+#profile-grid .profile { padding-bottom: 40px; }
+#profile-grid .panel { padding: 0 }
+#profile-grid .panel-body { padding: 15px }
+#profile-grid .profile-name { font-weight: bold; }
+#profile-grid .thumbnail {margin-bottom:6px;}
+#profile-grid .panel-thumbnail { overflow: hidden; }
+#profile-grid .img-rounded { border-radius: 4px 4px 0 0;}
+
 /* Footer Styles
 -------------------------------------------------- */
 
@@ -234,7 +296,7 @@ button:hover {
 .vcontainer {
     color: #fff;
     text-decoration: none;
-    padding-bottom: 80px;
+    padding-bottom: 0px;
     padding-left: 20px;
     padding-right: 20px;
     
